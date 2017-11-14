@@ -1,9 +1,8 @@
-//array that holds all the 'friends' that have taken the survey
-//initialize starting with 'dummy' data
+
 var friendList = [
   {
-    name: 'Stefanie Ding',
-    profilePic: 'https://avatars3.githubusercontent.com/u/17751317?v=3&s=466',
+    name: 'Margo Yearwood',
+    profilePic:'https://cdn.vectorstock.com/i/thumb-large/02/08/business-woman-avatar-vector-15490208.jpg',
     scores: [
       "4",
       "5",

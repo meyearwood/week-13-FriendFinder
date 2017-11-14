@@ -1,33 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+
 <html>
 
 <head>
     <meta charset="UTF-8">
-    <!-- materialize -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-    <!-- materialize icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-       <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <!-- Compiled and minified JavaScript -->
-    <script src="http://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="crossorigin="anonymous"></script>
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js">integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="crossorigin="anonymous"></script>
     <title>Friend Finder - Survey</title>
 </head>
 
 <body>
-    <div class='container'>
-        <div class='card-panel teal col s12 center-align'>
+    <div class="container">
+        <div class="card-panel teal col s12 center-align">
             <h4><strong>Survey Questions</strong></h4>
-            <div class='card-panel left-align white'>
+            <div class="card-panel left-align white">
                 <h3><strong>About You</strong></h3>
                 <br>
                 <input id="name" type="text" class="validate" required>
-                <label class='active' for="name">Name (required)</label>
+                <label class="active" for="name">Name (required)</label>
                 <input id="photo" type="text" class="validate" required>
-                <label class='active' for="name">Link to Photo Image (required)</label>
+                <label class="active" for="name">Link to Photo Image (required)</label>
                 <h5><strong>Question 1</strong></h5>
                 <p>I see myself as outgoing.</p>
                 <select data-placeholder="" class="browser-default" id="q1">
@@ -133,16 +128,16 @@
                 <button type ="submit" data-target="modal1" class="waves-effect waves-light btn modal-trigger cyan lighten-1" id="submitBtn">Submit</button>
             </div>
         </div>
-        <div class='col s4'>
-            <p><a href='/api/friends'>API Friends List</a> | <a href='https://github.com/StefanieDing/friend-finder' target='_blank'>GitHub Repo</a></p>
+        <div class="col s4">
+            <p><a href="/api/friends">API Friends List</a> | <a href="https://github.com/meyearwood/week-13-FriendFinder" target="_blank">GitHub Repo</a></p>
         </div>
 
-        <!-- Materialize Modal Structure -->
+
         <div id="modal1" class="modal">
           <div class="modal-content">
-            <h4>Meet Your New BFF</h4>
+            <h4>Meet Your Match</h4>
             <h5 id="matchName"></h5>
-            <img id="matchPic" src="" alt="No Image" width = 250px>
+            <img id="matchPic" src="#" alt="No Image" width = "250px">
           </div>
         <div class="modal-footer">
           <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Done</a>
@@ -151,11 +146,11 @@
 
     </div>
 
-<!-- Grabs information and sends it to server -->
+
 <script type="text/javascript">
 $(document).ready(function() {
     $("#submitBtn").on("click", function() {
-        //form validation
+
         function validateForm() {
             var isValid = true;
             $('.validate').each(function() {
@@ -170,9 +165,9 @@ $(document).ready(function() {
             });
             return isValid;
         }
-        //if everything is filled
+
         if (validateForm() == true) {
-            //creates a new friend from the values submitted
+
             var newFriend = {
                 name: $('#name').val().trim(),
                 profilePic: $('#photo').val().trim(),
@@ -189,17 +184,16 @@ $(document).ready(function() {
                     $('#q10').val(),
                 ]
             };
-            //Grabs current URL of website
+
             var currentURL = window.location.origin;
-            //AJAX posts the data to friends API.
+
             $.post(currentURL + "/api/friends", newFriend, function(data) {
-                //Grab the result from the AJAX post so that the best match's name and photo are displayed.
+
                 $("#matchName").text(data.name);
                 $("#matchPic").attr("src", data.profilePic);
             });
-            // Show the modal with the best match
+
                 $('.modal').modal();
-            //clear form after submission
             $('#name').val("");
             $('#photo').val("");
             $('#q1').val("");
@@ -213,9 +207,9 @@ $(document).ready(function() {
             $('#q9').val("");
             $('#q10').val("");
         } else {
-            alert("Please fill out ALL fields before submitting survey!")
+            alert("Please complete all fields before submitting!")
         }
-        // return false;
+
     });
 });
 </script>
